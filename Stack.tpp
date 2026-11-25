@@ -1,3 +1,11 @@
+/*
+Description: Stack template implementation
+Version used:
+    Author: Vanessa Jacqueline Troncoso Ortega
+    ID: A01663244
+Date: November 2026
+*/
+
 #include "Stack.h"
 
 template <typename T>

@@ -28,9 +28,9 @@ private:
     Node* replaceFromLeft(Node *&node);
     void printByLevelsRec(Node *node, int level);
 
-    int getHeight(Node *node); // To know the height of a node
-    int checkBalance(Node *node); // Compute the difference between the childrens height
-    void computeHeight(Node *node); // Update the height of the node after insert, delete or rotating
+    int getHeight(Node *node); 
+    int checkBalance(Node *node); 
+    void computeHeight(Node *node);
     void rebalance(Node *&node);
     Node* rotateRight(Node *node);
     Node* rotateLeft(Node *node);

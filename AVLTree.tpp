@@ -10,6 +10,7 @@ Date: November 2026
 #include <new>
 #include "AVLTree.h"
 
+// Node constructor
 template <typename T>
 AVLTree<T>::Node::Node(T nData){
     data = nData;
@@ -18,17 +19,20 @@ AVLTree<T>::Node::Node(T nData){
     height = 0;
 }
 
+// AVL Tree default constructor
 template <typename T>
 AVLTree<T>::AVLTree(){
     root = nullptr;
     count = 0;
 }
 
+// AVL Tree destructor
 template <typename T>
 AVLTree<T>::~AVLTree(){
     clear();
 }
 
+// Delete all elements in the tree
 template <typename T>
 void AVLTree<T>::clear(){
     if(root){
@@ -37,6 +41,7 @@ void AVLTree<T>::clear(){
     count = 0;
 }
 
+// To know the height of a node
 template <typename T>
 int AVLTree<T>::getHeight(Node *node){
     if(!node)
@@ -44,6 +49,7 @@ int AVLTree<T>::getHeight(Node *node){
     return node->height;
 }
 
+// Compute the difference between the childrens height
 template <typename T>
 void AVLTree<T>::computeHeight(Node *node){
     if(!node)
@@ -60,6 +66,7 @@ void AVLTree<T>::computeHeight(Node *node){
     }
 }
 
+// Update the height of the node after insert, delete or rotating
 template <typename T>
 int AVLTree<T>::checkBalance(Node *node){
     if(!node)
@@ -67,6 +74,7 @@ int AVLTree<T>::checkBalance(Node *node){
     return getHeight(node->left) - getHeight(node->right); 
 }
 
+// Generic function to insert, calls insertRecursive
 template <typename T>
 bool AVLTree<T>::insert(const T &data){
     if(insertRecursive(root, data)){
@@ -76,6 +84,7 @@ bool AVLTree<T>::insert(const T &data){
     return false;
 }
 
+// Logic for inserting nodes into an AVL Tree
 template <typename T>
 bool AVLTree<T>::insertRecursive(Node *&node, T data){
     if(!node){
@@ -104,6 +113,7 @@ bool AVLTree<T>::insertRecursive(Node *&node, T data){
     return false;
 }
 
+// Compares the address value with the target and return the result
 template <typename T>
 T* AVLTree<T>::find(const T &data){
     Node *current = root; 
@@ -121,21 +131,25 @@ T* AVLTree<T>::find(const T &data){
     return nullptr;
 }
 
+// Obtain the full size of the tree
 template <typename T>
 unsigned int AVLTree<T>::size(){
     return count;
 }
 
+// Obtain the height of a node
 template <typename T>
 int AVLTree<T>::height(){
     return getHeight(root) + 1;
 }
 
+// Print the AVL Tree values, generic
 template <typename T>
 void AVLTree<T>::printByLevels(){
     printByLevelsRec(root, 0);
 }
 
+// Print the AVL Tree values, recursive
 template <typename T>
 void AVLTree<T>::printByLevelsRec(Node *node, int level){
     if(node == nullptr)
@@ -150,6 +164,7 @@ void AVLTree<T>::printByLevelsRec(Node *node, int level){
     printByLevelsRec(node->left, level + 1);
 }
 
+// Remove a specific/only one node
 template <typename T>
 bool AVLTree<T>::remove(const T &data){
     if(removeRecursive(root, data)){
@@ -159,6 +174,7 @@ bool AVLTree<T>::remove(const T &data){
     return false;
 }
 
+// logic implemented for preventing disbalance
 template <typename T>
 bool AVLTree<T>::removeRecursive(Node *&current, T data){
     if(!current)
@@ -203,6 +219,7 @@ bool AVLTree<T>::removeRecursive(Node *&current, T data){
     return true;
 }
 
+// Delete until nothing is left in the tree
 template <typename T>
 void AVLTree<T>::deleteRecursive(Node *&node){
     if(!node)
@@ -215,6 +232,7 @@ void AVLTree<T>::deleteRecursive(Node *&node){
     node = nullptr;
 }
 
+// Computes the logic to connect the child
 template <typename T>
 typename AVLTree<T>::Node* AVLTree<T>::replaceFromLeft(Node *&node) {
     if(!node->right)
@@ -222,6 +240,7 @@ typename AVLTree<T>::Node* AVLTree<T>::replaceFromLeft(Node *&node) {
     return replaceFromLeft(node->right);
 }
 
+// rotates to the left for balancing
 template <typename T>
 typename AVLTree<T>::Node* AVLTree<T>::rotateLeft(Node *node){
     Node *nRoot = node->right;
@@ -235,6 +254,8 @@ typename AVLTree<T>::Node* AVLTree<T>::rotateLeft(Node *node){
 
     return nRoot;
 }
+
+// rotates to the right for balancing
 template <typename T>
 typename AVLTree<T>:: Node* AVLTree<T>::rotateRight(Node *node){
     Node *nRoot = node->left;
@@ -249,18 +270,21 @@ typename AVLTree<T>:: Node* AVLTree<T>::rotateRight(Node *node){
     return nRoot;
 }
 
+// rotates to the right and then left for balancing
 template <typename T>
 typename AVLTree<T>::Node* AVLTree<T>::doubleRotateLeft(Node *node){
     node->right = rotateRight(node->right);
     return rotateLeft(node);
 }
 
+// rotates to the left and then right for balancing
 template <typename T>
 typename AVLTree<T>::Node* AVLTree<T>::doubleRotateRight(Node *node){
     node->left = rotateLeft(node->left);
     return rotateRight(node);
 }
 
+// check the balance and do the appropiate rotations
 template <typename T>
 void AVLTree<T>::rebalance(Node *&node){
     int balance = checkBalance(node);

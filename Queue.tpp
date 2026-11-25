@@ -1,3 +1,11 @@
+/*
+Description: Queue template implementation
+Version used:
+    Author: Fernanda Magaña Zapata
+    ID: A01663341
+Date: November 2026
+*/
+
 #include "Queue.h"
 
 template <typename T>
