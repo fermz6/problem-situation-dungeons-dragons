@@ -1,6 +1,14 @@
+/*
+Description: Main already provided, puts the project together
+Authors:
+    Fernanda Magaña Zapata A01663341
+    Vanessa Jacqueline Troncoso Ortega A01663244
+Date: November 2026
+*/
+
 #include <iostream>
-#include "catalog.h"
-#include "dungeon.h"
+#include "Catalog.h"
+#include "Dungeon.h"
 
 using namespace std;
 

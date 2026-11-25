@@ -1,5 +1,5 @@
 /*
-Description:
+Description: Player class implementation
 Version used:
     Author: Vanessa Jacqueline Troncoso Ortega
     ID: A01663244

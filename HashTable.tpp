@@ -1,5 +1,5 @@
 /*
-Description:
+Description: Hash Table implementation
 Version used:
     Author: Vanessa Jacqueline Troncoso Ortega
     ID: A01663244

@@ -1,5 +1,5 @@
 /*
-Description:
+Description: Hash Table header, declaration of functions
 Version used:
     Author: Vanessa Jacqueline Troncoso Ortega
     ID: A01663244

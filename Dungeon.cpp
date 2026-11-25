@@ -15,7 +15,7 @@ Dungeon::Dungeon(){
 }
 
 // create the rooms and insert monsters in order
-bool Dungeon::createRoom(Monster &monster){
+bool Dungeon::createRoom(const Monster &monster){
     Room room(monster);
     if(!rooms.insertAtEnd(room))
         return false;
@@ -30,6 +30,6 @@ Room* Dungeon::getRoom(int position){
 }
 
 // print the rooms
-void Dungeon::print(){
+void Dungeon::printRooms(){
     rooms.print();
 }

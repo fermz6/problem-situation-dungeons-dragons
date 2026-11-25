@@ -16,10 +16,18 @@ private:
     DoublyLinkedList<Room> rooms;
 public:
     Dungeon();
-    bool createRoom(Monster &monster);
-    Room* getRoom(int position);
-    void print();
 
+    // Prevent copying
     Dungeon(const Dungeon& other) = delete;
     Dungeon& operator=(const Dungeon& other) = delete;
+
+    Room* getRoom(int position);
+    bool loadMap(const std::string &filename);
+    unsigned int getMapSize();
+    bool createRoom(const Monster &monster);
+    void printRooms();
+    bool traceRoute(unsigned int start, unsigned int end);
+    bool advanceRoute();
+    Room* currentRouteRoom();
+    void printRoute();
 };
