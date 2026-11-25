@@ -9,7 +9,7 @@ Date: November 2026
 #include <iostream>
 #include <new>
 
-// store value and initialize both links
+#include "DoublyLinkedList.h"
 template <class T>
 DoublyLinkedList<T>::Node::Node(T value) {
     data = value;

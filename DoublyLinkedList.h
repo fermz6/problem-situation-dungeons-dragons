@@ -1,10 +1,11 @@
 /*
-Description:
+Description: Doubly Linked List header
 Version used:
     Author: Vanessa Jacqueline Troncoso Ortega
     ID: A01663244
 Date: November 2026
 */
+
 #pragma once
 
 template <class T>
@@ -105,4 +106,4 @@ public:
     }
 };
 
-#include "DoublyLinkList.tpp"
+#include "DoublyLinkedList.tpp"

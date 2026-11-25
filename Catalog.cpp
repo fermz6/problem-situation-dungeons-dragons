@@ -127,7 +127,7 @@ bool Catalog::loadFromCSV(string filename) {
                         return false;
                     }
 
-                    monster.setCR(stod(field));
+                    monster.setCr(stod(field));
                     break;
 
                 case 2:
@@ -144,7 +144,7 @@ bool Catalog::loadFromCSV(string filename) {
                         return false;
                     }
 
-                    monster.setAC(stoi(field));
+                    monster.setAc(stoi(field));
                     break;
 
                 case 5:
@@ -153,7 +153,7 @@ bool Catalog::loadFromCSV(string filename) {
                         return false;
                     }
 
-                    monster.setHP(stoi(field));
+                    monster.setHp(stoi(field));
                     break;
 
                 case 6:
@@ -180,7 +180,7 @@ int Catalog::getCount() {
 }
 
 // returns a random monster or nullptr if the catalog is empty
-Monster *Catalog::getRandomMonster() {
+Monster *Catalog::getRandom() {
     if (count == 0) {
         return nullptr;
     }

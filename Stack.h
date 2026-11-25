@@ -28,6 +28,9 @@ public:
     T& getTop();
     bool isEmpty();
     void releaseData();
+
+    Stack(const Stack&) = delete;
+    Stack& operator=(const Stack&) = delete;
 };
 
 #include "Stack.tpp"
