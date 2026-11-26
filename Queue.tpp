@@ -72,7 +72,9 @@ bool Queue<T>::dequeue(){
 
 template <typename T>
 T* Queue<T>::getFront(){
-    return front->data;
+    if(!front)
+        return nullptr;
+    return &front->data;
 }
 
 template <typename T>

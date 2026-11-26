@@ -1,3 +1,11 @@
+/*
+Description: Graph implementation, using BSF that is connected to the logic of queue and stack
+Authors:
+    Fernanda Magaña Zapata A01663341
+    Vanessa Jacqueline Troncoso Ortega A01663244
+Date: November 2026
+*/
+
 #include "Graph.h"
 #include <fstream>
 #include <sstream>
@@ -111,6 +119,7 @@ bool Graph::loadFile(const std::string &filename) {
     
     if (!getline(file, line)) {
         cout << "No number of vertices\n";
+        return false;
     }
     
     // read the vertex count from the second line
@@ -125,6 +134,7 @@ bool Graph::loadFile(const std::string &filename) {
     // allocate the vertices and the arrays used by the graph
     if (!createGraph(nSize)) {
         cout << "Could not create the graph\n";
+        erase();
         return false;
     }
 
@@ -153,7 +163,7 @@ bool Graph::loadFile(const std::string &filename) {
     return true;
 }
 
-
+// Help visit all elements in a graph, not necessary a route
 bool Graph::BFS(unsigned int start){
     if(start>=size)
         return false;
@@ -183,6 +193,7 @@ bool Graph::BFS(unsigned int start){
     return true;
 }
 
+// Uses queue to keep a previous for every vertex and stop once end has been marked
 bool Graph::BFSPath(unsigned int start, unsigned int end, DoublyLinkedList<unsigned int> &path){
     if(start >= size || end >= size)
         return false;
@@ -195,11 +206,13 @@ bool Graph::BFSPath(unsigned int start, unsigned int end, DoublyLinkedList<unsig
 
     while(!queue.isEmpty() && !visited[end]){
         unsigned int vertex = *queue.getFront();
-        queue.dequeue();
+        if(!queue.dequeue())
+            return false;
 
         for(const Edge &edge : vertices[vertex].edges){
-            if(!visited[edge.target]){
+            if(!visited[edge.target]) {
                 visited[edge.target] = true;
+                previous[edge.target] = vertex;
                 if(!queue.enqueue(edge.target))
                     return false;
             }
@@ -208,6 +221,7 @@ bool Graph::BFSPath(unsigned int start, unsigned int end, DoublyLinkedList<unsig
     return buildPath(start, end, path);
 }
 
+// Rebuilds the route from end back to start with the stack
 bool Graph::buildPath(unsigned int start, unsigned int end, DoublyLinkedList<unsigned int> &path) const {
     path.clear();
     if(end != start && previous[end] == NONE) // indicates that end was not reached
@@ -223,4 +237,5 @@ bool Graph::buildPath(unsigned int start, unsigned int end, DoublyLinkedList<uns
             return false;
         stack.pop();
     }
+    return true;
 }

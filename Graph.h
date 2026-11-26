@@ -1,3 +1,11 @@
+/*
+Description: Graph header, contains Edge and Vertex classes inside
+Authors:
+    Fernanda Magaña Zapata A01663341
+    Vanessa Jacqueline Troncoso Ortega A01663244
+Date: November 2026
+*/
+
 #pragma once
 
 #include <string>
@@ -33,7 +41,6 @@ private:
     unsigned int *previous;
 
     void resetArrays();
-    unsigned int countComponents();
     bool buildPath(unsigned int start, unsigned int end, DoublyLinkedList<unsigned int> &path) const;
 
 public:

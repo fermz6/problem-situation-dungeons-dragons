@@ -18,6 +18,7 @@ private:
     Graph map;
     DoublyLinkedList<unsigned int> route;
     unsigned int routePosition;
+    
 public:
     Dungeon();
 
