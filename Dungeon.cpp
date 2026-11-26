@@ -75,9 +75,9 @@ Room* Dungeon::currentRouteRoom(){
 void Dungeon::printRoute(){
     cout << "Route: ";
     for(unsigned int i = 0; i < route.size(); i++){
-        unsigned int *index = route.getAt(i);
+        unsigned int index = *route.getAt(i);
         if(index)
-            cout << " " << *index;
+            cout << " " << index;
     }
     cout << endl;
 }
