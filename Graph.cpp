@@ -82,7 +82,7 @@ void Graph::erase(){
     delete [] previous;
     vertices = nullptr;
     visited = nullptr;
-    previous = nullptr;
+    previous = nullptr; // USAR NONE????
     size = 0;
 }
 

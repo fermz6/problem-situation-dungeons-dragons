@@ -15,6 +15,7 @@ Date: November 2026
 
 #define NONE UINT_MAX
 
+// VOLVERLA TEMPLATE
 class Graph{
 private:
     class Edge{
