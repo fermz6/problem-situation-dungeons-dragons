@@ -10,10 +10,14 @@ Date: November 2026
 #include "DoublyLinkedList.h"
 #include "Room.h"
 #include "Catalog.h"
+#include "Graph.h"
 
 class Dungeon {
 private:
     DoublyLinkedList<Room> rooms;
+    Graph map;
+    DoublyLinkedList<unsigned int> route;
+    unsigned int routePosition;
 public:
     Dungeon();
 
