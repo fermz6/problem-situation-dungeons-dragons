@@ -8,6 +8,7 @@ Date: November 2026
 
 #include <new>
 #include <iostream>
+#include <new>
 
 // starts with no buckets or hash function
 template <class T>

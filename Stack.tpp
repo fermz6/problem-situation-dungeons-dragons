@@ -59,7 +59,7 @@ bool Stack<T>::pop(){
 }
 
 template <typename T>
-T& Stack<T>::getTop(){
+T* Stack<T>::getTop(){
     return top->data;
 }
 

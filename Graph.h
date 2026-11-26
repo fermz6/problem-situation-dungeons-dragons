@@ -5,6 +5,8 @@
 #include "Stack.h"
 #include "Queue.h"
 
+#define NONE UINT_MAX
+
 class Graph{
 private:
     class Edge{
@@ -32,6 +34,7 @@ private:
 
     void resetArrays();
     unsigned int countComponents();
+    bool buildPath(unsigned int start, unsigned int end, DoublyLinkedList<unsigned int> &path) const;
 
 public:
     Graph();

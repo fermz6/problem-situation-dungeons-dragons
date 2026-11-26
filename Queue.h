@@ -26,7 +26,7 @@ public:
 
     bool enqueue(T data);
     bool dequeue();
-    T& getFront();
+    T* getFront();
     bool isEmpty();
     void releaseData();
 

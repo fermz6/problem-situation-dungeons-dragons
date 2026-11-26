@@ -25,7 +25,7 @@ public:
 
     bool push(T data);
     bool pop();
-    T& getTop();
+    T* getTop();
     bool isEmpty();
     void releaseData();
 

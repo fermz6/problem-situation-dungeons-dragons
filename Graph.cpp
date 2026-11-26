@@ -84,7 +84,7 @@ void Graph::resetArrays(){
     
     for(unsigned int i = 0; i < size; i++){
         visited[i] = false;
-        previous[i] = UINT_MAX; // No previous
+        previous[i] = NONE; // No previous
     }
 }
 
@@ -166,7 +166,7 @@ bool Graph::BFS(unsigned int start){
 
     std::cout << "BFS from " << start << ":";
     while(!queue.isEmpty()){
-        unsigned int vertex = queue.getFront();
+        unsigned int vertex = *queue.getFront();
         if(!queue.dequeue())
             return false;
         std::cout << " " << vertex;
@@ -205,7 +205,22 @@ bool Graph::BFSPath(unsigned int start, unsigned int end, DoublyLinkedList<unsig
             }
         }
     }
-    return buildPath(start, end, path)-,
+    return buildPath(start, end, path);
 }
 
-bool Graph::buildPath(unsigned int start, unsigned int e)
+bool Graph::buildPath(unsigned int start, unsigned int end, DoublyLinkedList<unsigned int> &path) const {
+    path.clear();
+    if(end != start && previous[end] == NONE) // indicates that end was not reached
+        return false;
+    
+    Stack<unsigned int> stack;
+    for(unsigned int vertex = end; vertex != NONE; vertex = previous[vertex])
+        if(!stack.push(vertex))
+            return false;
+    
+    while(!stack.isEmpty()){
+        if(!path.insert(*stack.getTop()))
+            return false;
+        stack.pop();
+    }
+}
