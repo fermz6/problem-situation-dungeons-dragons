@@ -30,7 +30,7 @@ int main() {
 
     // one room for every vertex of the map: room i is vertex i
     for (unsigned int c = 0; c < myDungeon.getMapSize(); c++) {
-        Monster *pMonster = myCatalog.getRandomMonster();
+        Monster *pMonster = myCatalog.getRandom();
         if (!pMonster) {
             cout << "Could not get a monster from the catalog" << endl;
             return 0;
