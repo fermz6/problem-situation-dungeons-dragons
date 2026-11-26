@@ -15,7 +15,7 @@ Date: November 2026
 
 #define NONE UINT_MAX // USE ALIASESSSS INSTEAD????
 
-// VOLVERLA TEMPLATE
+template <typename T>
 class Graph{
 private:
     class Edge{
@@ -61,3 +61,5 @@ public:
     bool BFS(unsigned int start);
     bool BFSPath(unsigned int start, unsigned int end, DoublyLinkedList<unsigned int> &path);
 };
+
+#include "Graph.tpp"

@@ -1,5 +1,5 @@
 /*
-Description: Graph implementation, using BSF that is connected to the logic of queue and stack
+Description: Graph<T> implementation, using BSF that is connected to the logic of queue and stack
 Authors:
     Fernanda Magaña Zapata A01663341
     Vanessa Jacqueline Troncoso Ortega A01663244
@@ -12,23 +12,27 @@ Date: November 2026
 
 using namespace std;
 
-Graph::Edge::Edge(unsigned int value) {
+template <typename T>
+Graph<T>::Edge::Edge(unsigned int value) {
     target = value;
     weight = 1;
 }
 
-Graph::Graph(){
+template <typename T>
+Graph<T>::Graph(){
     vertices = nullptr;
     size = 0;
     visited = nullptr;
     previous = nullptr;
 }
 
-Graph::~Graph(){
+template <typename T>
+Graph<T>::~Graph(){
     erase();
 }
 
-bool Graph::createGraph(unsigned int nSize){
+template <typename T>
+bool Graph<T>::createGraph(unsigned int nSize){
     if(nSize == 0)
         return false;
     
@@ -56,8 +60,9 @@ bool Graph::createGraph(unsigned int nSize){
     return true;
 }
 
+template <typename T>
 // PREGUNTRALE A ARTEMIO SI ACEPTA DUPLICADOS !!!!!!!!!!
-bool Graph::insertEdge(unsigned int from, unsigned int to){
+bool Graph<T>::insertEdge(unsigned int from, unsigned int to){
     if(from >= size || to >= size)
         return false;
     
@@ -68,7 +73,8 @@ bool Graph::insertEdge(unsigned int from, unsigned int to){
     return vertices[from].edges.insert(edge);
 }
 
-bool Graph::removeEdge(unsigned int from, unsigned int to){
+template <typename T>
+bool Graph<T>::removeEdge(unsigned int from, unsigned int to){
     if(from >= size || to >= size)
         return false;
     
@@ -76,7 +82,8 @@ bool Graph::removeEdge(unsigned int from, unsigned int to){
     return vertices[from].edges.remove(edge);
 }
 
-void Graph::erase(){
+template <typename T>
+void Graph<T>::erase(){
     delete [] vertices;
     delete [] visited;
     delete [] previous;
@@ -86,7 +93,8 @@ void Graph::erase(){
     size = 0;
 }
 
-void Graph::resetArrays(){
+template <typename T>
+void Graph<T>::resetArrays(){
     if(!visited || !previous)
         return;
     
@@ -96,12 +104,14 @@ void Graph::resetArrays(){
     }
 }
 
-unsigned int Graph::getSize(){
+template <typename T>
+unsigned int Graph<T>::getSize(){
     return size;
 }
 
 // loads filename and returns whether the map was loaded successfully
-bool Graph::loadFile(const std::string &filename) {
+template <typename T>
+bool Graph<T>::loadFile(const std::string &filename) {
     ifstream file;
     file.open(filename);
 
@@ -112,7 +122,7 @@ bool Graph::loadFile(const std::string &filename) {
         return false;
     }
     
-    if (!getline(file, line) || line != "Graph") {
+    if (!getline(file, line) || line != "Graph<T>") {
         cout << "Missing or Invalid header\n";
         return false;
     }
@@ -131,9 +141,9 @@ bool Graph::loadFile(const std::string &filename) {
         return false;
     }
 
-    // allocate the vertices and the arrays used by the graph
-    if (!createGraph(nSize)) {
-        cout << "Could not create the graph\n";
+    // allocate the vertices and the arrays used by the Graph<T>
+    if (!createGraph<T>(nSize)) {
+        cout << "Could not create the Graph<T>\n";
         erase();
         return false;
     }
@@ -163,8 +173,9 @@ bool Graph::loadFile(const std::string &filename) {
     return true;
 }
 
-// Help visit all elements in a graph, not necessary a route
-bool Graph::BFS(unsigned int start){
+// Help visit all elements in a Graph<T>, not necessary a route
+template <typename T>
+bool Graph<T>::BFS(unsigned int start){
     if(start>=size)
         return false;
     
@@ -194,7 +205,8 @@ bool Graph::BFS(unsigned int start){
 }
 
 // Uses queue to keep a previous for every vertex and stop once end has been marked
-bool Graph::BFSPath(unsigned int start, unsigned int end, DoublyLinkedList<unsigned int> &path){
+template <typename T>
+bool Graph<T>::BFSPath(unsigned int start, unsigned int end, DoublyLinkedList<unsigned int> &path){
     if(start >= size || end >= size)
         return false;
     
@@ -222,7 +234,8 @@ bool Graph::BFSPath(unsigned int start, unsigned int end, DoublyLinkedList<unsig
 }
 
 // Rebuilds the route from end back to start with the stack
-bool Graph::buildPath(unsigned int start, unsigned int end, DoublyLinkedList<unsigned int> &path) const {
+template <typename T>
+bool Graph<T>::buildPath(unsigned int start, unsigned int end, DoublyLinkedList<unsigned int> &path) const {
     path.clear();
     if(end != start && previous[end] == NONE) // indicates that end was not reached
         return false;
