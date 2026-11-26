@@ -53,7 +53,12 @@ bool Dungeon::traceRoute(unsigned int start, unsigned end){
     route.clear(); // No old routes
     routePosition = 0; // Start from origin
 
-    return map.BFSPath(start, end, route);
+    if(!map.BFSPath(start, end, route)){
+        route.clear();
+        return false;
+    }
+
+    return true;
 }
 
 bool Dungeon::advanceRoute(){
@@ -76,8 +81,7 @@ void Dungeon::printRoute(){
     cout << "Route: ";
     for(unsigned int i = 0; i < route.size(); i++){
         unsigned int index = *route.getAt(i);
-        if(index)
-            cout << " " << index;
+        cout << " " << index;
     }
     cout << endl;
 }

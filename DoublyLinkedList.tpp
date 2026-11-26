@@ -11,8 +11,7 @@ Date: November 2026
 
 #include "DoublyLinkedList.h"
 template <class T>
-DoublyLinkedList<T>::Node::Node(T value) {
-    data = value;
+DoublyLinkedList<T>::Node::Node(T value) : data(value) {
     next = nullptr;
     prev = nullptr;
 }

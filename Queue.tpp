@@ -37,7 +37,7 @@ void Queue<T>::releaseData(){
 
 template <typename T>
 bool Queue<T>::enqueue(T data){
-    Node *newNode = new(nothrow) Node(data);
+    Node *newNode = new(std::nothrow) Node(data);
 
     if(!newNode){
         return false;
