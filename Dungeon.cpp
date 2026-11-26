@@ -73,10 +73,11 @@ Room* Dungeon::currentRouteRoom(){
 }
 
 void Dungeon::printRoute(){
-    if(route.size() == 0){
-        cout << "No route" << endl;
-        return;
-    }
     cout << "Route: ";
-    route.print();
+    for(unsigned int i = 0; i < route.size(); i++){
+        unsigned int *index = route.getAt(i);
+        if(index)
+            cout << " " << *index;
+    }
+    cout << endl;
 }
