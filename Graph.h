@@ -13,7 +13,7 @@ Date: November 2026
 #include "Stack.h"
 #include "Queue.h"
 
-#define NONE UINT_MAX
+#define NONE UINT_MAX // USE ALIASESSSS INSTEAD????
 
 // VOLVERLA TEMPLATE
 class Graph{
