@@ -9,11 +9,12 @@ Date: November 2026
 #pragma once
 
 #include <string>
+#include <climits>
 #include "DoublyLinkedList.h"
 #include "Stack.h"
 #include "Queue.h"
 
-#define NONE UINT_MAX // USE ALIASESSSS INSTEAD????
+#define NONE UINT_MAX
 
 template <typename T>
 class Graph{
@@ -21,7 +22,7 @@ private:
     class Edge{
     private:
         unsigned int target;
-        unsigned int weight; // PREGUNTRALE A ARTEMIO QUE HACER CON EL WEIGHT!!!!
+        unsigned int weight;
         friend class Graph;
     public:
         Edge(unsigned int value);
@@ -31,7 +32,8 @@ private:
     };
 
     class Vertex{
-    public:
+    private:
+        T data;
         DoublyLinkedList<Edge> edges; //Adjacency list
         friend class Graph;
     };
@@ -60,6 +62,7 @@ public:
     unsigned int getSize();
     bool BFS(unsigned int start);
     bool BFSPath(unsigned int start, unsigned int end, DoublyLinkedList<unsigned int> &path);
+    T* getValue(unsigned int position);
 };
 
 #include "Graph.tpp"

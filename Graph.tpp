@@ -61,7 +61,6 @@ bool Graph<T>::createGraph(unsigned int nSize){
 }
 
 template <typename T>
-// PREGUNTRALE A ARTEMIO SI ACEPTA DUPLICADOS !!!!!!!!!!
 bool Graph<T>::insertEdge(unsigned int from, unsigned int to){
     if(from >= size || to >= size)
         return false;
@@ -122,7 +121,7 @@ bool Graph<T>::loadFile(const std::string &filename) {
         return false;
     }
     
-    if (!getline(file, line) || line != "Graph<T>") {
+    if (!getline(file, line) || line != "Graph") {
         cout << "Missing or Invalid header\n";
         return false;
     }
@@ -142,7 +141,7 @@ bool Graph<T>::loadFile(const std::string &filename) {
     }
 
     // allocate the vertices and the arrays used by the Graph<T>
-    if (!createGraph<T>(nSize)) {
+    if (!createGraph(nSize)) {
         cout << "Could not create the Graph<T>\n";
         erase();
         return false;
@@ -251,4 +250,12 @@ bool Graph<T>::buildPath(unsigned int start, unsigned int end, DoublyLinkedList<
         stack.pop();
     }
     return true;
+}
+
+template <typename T>
+T* Graph<T>::getValue(unsigned int position){
+    if(position >= size)
+        return nullptr;
+
+    return &vertices[position].data;
 }

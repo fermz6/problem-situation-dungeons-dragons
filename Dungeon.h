@@ -15,7 +15,7 @@ Date: November 2026
 class Dungeon {
 private:
     DoublyLinkedList<Room> rooms;
-    Graph map;
+    Graph<Room*> map;
     DoublyLinkedList<unsigned int> route;
     unsigned int routePosition;
     
